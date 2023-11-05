@@ -1,0 +1,33 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///BCD addition///
+
+
+module bcd_adder(a,b,carry_in,sum,carry);
+
+input [3:0] a,b;
+input carry_in;
+output reg [3:0] sum;
+output reg [3:0] carry;
+
+reg [7:0] sum_temp; 
+
+always @(a,b,carry_in)
+begin
+  sum_temp = a+b+carry_in;       
+  if(sum_temp > 9)    
+    begin
+      sum_temp = sum_temp+6;    
+      carry = sum_temp[7:4];               
+      sum   = sum_temp[3:0];    
+    end
+  else    
+    begin
+      carry = sum_temp[7:4];
+      sum   = sum_temp[3:0];
+    end
+end     
+
+endmodule
